@@ -17,9 +17,9 @@ const optionsFlatpickr = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-// console.log(selectedDates[0]);
-  },
+//   onClose(selectedDates) {
+//   console.log(selectedDates[0]);
+//   },
 };
 flatpickr('#datetime-picker', optionsFlatpickr);
 
@@ -88,9 +88,3 @@ function displayCounter()
     refs.mCount.textContent = String(minutes).padStart(2,0);
     refs.sCount.textContent = String(seconds).padStart(2,0);
 };
-
-
-
-
-
-
