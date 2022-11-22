@@ -16,3 +16,21 @@ img {
   display: block;
   max-width: 100%;
 }
+.field {
+  display: inline-block;
+  /* border: 5px solid green; */
+  margin-left: 10px;
+
+}
+.label {
+  text-align: center;
+  display: block;
+  font-size: 20px;
+}
+.value {
+text-align: center;
+display: block;
+font-size: 50px;
+font-weight: bold;
+letter-spacing: 3px;
+}
