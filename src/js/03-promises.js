@@ -26,22 +26,24 @@ function createPromise(position, delay) {
 function onClicksbmBtn(event) {
   event.preventDefault();
 
-  let InputedDelay = Number(refs.delay.value);
-  const InputedStep = Number(refs.step.value);
-  const InputedAmount = Number(refs.amount.value);
+  let inputedDelay = Number(refs.delay.value);
+  // console.log(inputedDelay);
+  const inputedStep = Number(refs.step.value);
+  // console.log(inputedStep);
+  const inputedAmount = Number(refs.amount.value);
 
-  for (let i = 0; i < InputedAmount; i += 1) {
-    createPromise(i + 1, InputedDelay)
-      .then(({ position, InputedDelay }) => {
+  for (let i = 0; i < inputedAmount; i += 1) {
+    createPromise(i + 1, inputedDelay)
+      .then(({ position, inputedDelay }) => {
         Notiflix.Notify.success(
-          `✅ Fulfilled promise ${position} in ${InputedDelay}ms`
+          `✅ Fulfilled promise ${position} in ${delayTime}ms`
         );
       })
-      .catch(({ position, InputedDelay }) => {
+      .catch(({ position, inputedDelay }) => {
         Notiflix.Notify.failure(
-          `❌ Rejected promise ${position} in ${InputedDelay}ms`
+          `❌ Rejected promise ${position} in ${delayTime}ms`
         );
       });
-    InputedDelay += InputedStep;
+    let delayTime = inputedDelay += inputedStep;
   }
 }
