@@ -32,7 +32,7 @@ refs.startBtn.addEventListener('click', onClickStartBtn);
 refs.startBtn.disabled = true;
 
 function onChangeDate() {
-    now = Date.now();
+    let now = Date.now();
     picker = Date.parse(refs.inputedDate.value);
     // console.log('now: ' + now);
     // console.log('picker: ' + picker);
