@@ -1,13 +1,36 @@
 import Notiflix from 'notiflix';
 
 const refs = {
-  delay: document.querySelector('input[name="delay"]'),
-  step: document.querySelector('input[name="step"]'),
-  amount: document.querySelector('input[name="amount"]'),
-  sbmBtn: document.querySelector('button')
+  form: document.querySelector('form'),
+  firstDelay: document.querySelector('[name="delay"]'),
+  stepDelay: document.querySelector('[name="step"]'),
+  amountPromises: document.querySelector('[name="amount"]'),
 };
 
-refs.sbmBtn.addEventListener('click', onClicksbmBtn);
+refs.form.addEventListener('submit', onSubmitForm);
+
+function onSubmitForm(event) {
+  event.preventDefault();
+
+  let delay = Number(refs.firstDelay.value);
+  const step = Number(refs.stepDelay.value);
+  const amount = Number(refs.amountPromises.value);
+
+  for (let i = 0; i < amount; i += 1) {
+    createPromise(i + 1, delay)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      });
+    delay += step;
+  }
+};
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
@@ -21,29 +44,4 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
-};
-
-function onClicksbmBtn(event) {
-  event.preventDefault();
-
-  let inputedDelay = Number(refs.delay.value);
-  // console.log(inputedDelay);
-  const inputedStep = Number(refs.step.value);
-  // console.log(inputedStep);
-  const inputedAmount = Number(refs.amount.value);
-
-  for (let i = 0; i < inputedAmount; i += 1) {
-    createPromise(i + 1, inputedDelay)
-      .then(({ position, inputedDelay }) => {
-        Notiflix.Notify.success(
-          `✅ Fulfilled promise ${position} in ${delayTime}ms`
-        );
-      })
-      .catch(({ position, inputedDelay }) => {
-        Notiflix.Notify.failure(
-          `❌ Rejected promise ${position} in ${delayTime}ms`
-        );
-      });
-    let delayTime = inputedDelay += inputedStep;
-  }
 }
